@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20180217200733) do
     t.bigint "line_id"
     t.string "style"
     t.date "date"
+    t.string "kind"
     t.string "belayer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -31,7 +32,7 @@ ActiveRecord::Schema.define(version: 20180217200733) do
     t.string "name"
     t.string "grade"
     t.string "crag"
-    t.string "type"
+    t.string "kind"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

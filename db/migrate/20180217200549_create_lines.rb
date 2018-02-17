@@ -4,7 +4,7 @@ class CreateLines < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :grade
       t.string :crag
-      t.string :type
+      t.string :kind
 
       t.timestamps
     end
