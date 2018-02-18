@@ -1,0 +1,16 @@
+%table.table
+  %thead.thead-dark
+    %tr
+      %th{scope: 'col'} #
+      %th{scope: 'col'} Name
+      %th{scope: 'col'} Grade
+      %th{scope: 'col'} Crag
+      %th{scope: 'col'} Kind
+  %tbody
+    - lines.each do |line|
+      %tr
+        %th{scope: 'row'}= line.id
+        %td= line.name
+        %td= line.grade
+        %td= line.crag
+        %td= line.kind

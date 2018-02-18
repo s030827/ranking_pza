@@ -1,0 +1,12 @@
+%table.table
+  %thead.thead-dark
+    %tr
+      %th{scope: 'col'} #
+      %th{scope: 'col'} Name
+      %th{scope: 'col'} Surname
+  %tbody
+    - users.each do |user|
+      %tr
+        %th{scope: 'row'}= user.id
+        %td= user.name
+        %td= user.surname
