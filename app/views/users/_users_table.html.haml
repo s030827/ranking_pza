@@ -5,9 +5,8 @@
       %th{scope: 'col'} Name
       %th{scope: 'col'} Surname
   %tbody
-    - count = ((params[:page] || 1).to_i - 1) * User.page(1).limit_value
     - users.each.with_index(1) do |user, i|
       %tr
-        %th{scope: 'row'}= count+i
+        %th{scope: 'row'}= rows_count + i
         %td= user.name
         %td= user.surname

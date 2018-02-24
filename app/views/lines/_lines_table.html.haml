@@ -7,9 +7,9 @@
       %th{scope: 'col'} Crag
       %th{scope: 'col'} Kind
   %tbody
-    - lines.each do |line|
+    - lines.each.with_index(1) do |line, i|
       %tr
-        %th{scope: 'row'}= line.id
+        %th{scope: 'row'}= rows_count + i
         %td= line.name
         %td= line.grade
         %td= line.crag

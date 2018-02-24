@@ -9,9 +9,9 @@
       %th{scope: 'col'} Date
       %th{scope: 'col'} Belayer
   %tbody
-    - ascents.each do |ascent|
+    - ascents.each.with_index(1) do |ascent, i|
       %tr
-        %th{scope: 'row'}= ascent.id
+        %th{scope: 'row'}= rows_count + i
         %td= ascent.user.name + ' ' + ascent.user.surname
         %td= ascent.line.name
         %td= ascent.line.grade
