@@ -1,0 +1,4 @@
+.container
+  %h1 #{@user.name} #{@user.surname}
+  %h2 Ascents
+  = render 'ascents', ascents: @user.ascents.includes(:line)

@@ -1,4 +1,4 @@
-%table.table
+%table.table.table-condensed.table-hover
   %thead.thead-dark
     %tr
       %th{scope: 'col'} #
@@ -8,7 +8,7 @@
       %th{scope: 'col'} Kind
   %tbody
     - lines.each.with_index(1) do |line, i|
-      %tr
+      %tr.clickable{ "data-href" => line_path(line) }
         %th{scope: 'row'}= rows_count + i
         %td= line.name
         %td= line.grade

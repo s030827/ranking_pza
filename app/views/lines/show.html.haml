@@ -1,0 +1,4 @@
+.container
+  %h1 #{@line.name}, #{@line.grade}, #{@line.crag}
+  %h2 Ascents
+  = render 'ascents', ascents: @line.ascents

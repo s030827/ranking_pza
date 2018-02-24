@@ -3,20 +3,14 @@
     %tr
       %th{scope: 'col'} #
       %th{scope: 'col'} Username
-      %th{scope: 'col'} Line's name
-      %th{scope: 'col'} Grade
       %th{scope: 'col'} Style
-      %th{scope: 'col'} Crag
       %th{scope: 'col'} Date
       %th{scope: 'col'} Belayer
   %tbody
     - ascents.each.with_index(1) do |ascent, i|
       %tr
-        %th{scope: 'row'}= rows_count + i
+        %th{scope: 'row'}= i
         %td= ascent.user.name + ' ' + ascent.user.surname
-        %td= ascent.line_name
-        %td= ascent.line_grade
         %td= ascent.style.upcase
-        %td= link_to ascent.line_crag, crags_path(crag: ascent.line_crag)
         %td= ascent.date
         %td= ascent.belayer

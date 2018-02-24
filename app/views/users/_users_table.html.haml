@@ -1,4 +1,4 @@
-%table.table
+%table.table.table-condensed.table-hover
   %thead.thead-dark
     %tr
       %th{scope: 'col'} #
@@ -6,7 +6,7 @@
       %th{scope: 'col'} Surname
   %tbody
     - users.each.with_index(1) do |user, i|
-      %tr
+      %tr.clickable{ "data-href" => user_path(user) }
         %th{scope: 'row'}= rows_count + i
         %td= user.name
         %td= user.surname

@@ -1,0 +1,18 @@
+%table.table
+  %thead.thead-dark
+    %tr
+      %th{scope: 'col'} Name
+      %th{scope: 'col'} Grade
+      %th{scope: 'col'} Style
+      %th{scope: 'col'} Crag
+      %th{scope: 'col'} Date
+      %th{scope: 'col'} Belayer
+  %tbody
+    - ascents.each do |ascent|
+      %tr
+        %th{scope: 'row'}= ascent.line.name
+        %td= ascent.line.grade
+        %td= ascent.style.upcase
+        %td= ascent.line.crag
+        %td= ascent.date
+        %td= ascent.belayer
