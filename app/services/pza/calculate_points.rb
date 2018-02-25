@@ -8,7 +8,19 @@ module PZA
     end
 
     def call
-      POINTS[@ascent.style.upcase.to_sym] + GRADES.find_index(@ascent.line_grade) * 50
+      return 0 if @ascent.line_grade < GRADES.first
+      style_points + grade_points
+    end
+
+    private
+
+    def style_points
+      POINTS[@ascent.style.upcase.to_sym]
+    end
+
+    def grade_points
+      grade = @ascent.line_grade.split('/').first
+      GRADES.find_index(grade) * 50
     end
   end
 end
