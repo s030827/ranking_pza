@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe PZA::CalculatePoints do
-  describe 'call' do
+describe PZA::CalculateAscentPoints do
+  describe '#call' do
     let(:line) { build(:line, grade: '8a') }
     let(:ascent) { build(:ascent, line: line, style: 'RP' ) }
     subject { described_class.new(ascent).call }
