@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180217200733) do
+ActiveRecord::Schema.define(version: 20180225090520) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20180217200733) do
     t.string "belayer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "points"
     t.index ["line_id"], name: "index_ascents_on_line_id"
     t.index ["user_id"], name: "index_ascents_on_user_id"
   end
