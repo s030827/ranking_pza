@@ -1,0 +1,5 @@
+class AddPointsToAscents < ActiveRecord::Migration[5.1]
+  def change
+    add_column :ascents, :points, :integer
+  end
+end
