@@ -1,0 +1,13 @@
+%table.table.table-condensed.table-hover
+  %h4.text-center= title
+  %thead.thead-dark
+    %tr
+      %th #
+      %th Full name
+      %th Points
+  %tbody
+    - results.each.with_index(1) do |user, place|
+      %tr.clickable{ "data-href" => user_path(user[:id]) }
+        %th{scope: 'row'}= place
+        %td= user[:full_name]
+        %td= user[:points]

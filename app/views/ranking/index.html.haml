@@ -1,0 +1,13 @@
+.container
+  %h2.text-center Lead
+  .row
+    .col
+      = render 'ranking', results: @women_s, title: 'Men'
+    .col
+      = render 'ranking', results: @men_s, title: 'Women'
+  %h2.text-center Bouldering
+  .row
+    .col-sm
+      = render 'ranking', results: @women_b, title: 'Women'
+    .col-sm
+      = render 'ranking', results: @men_b, title: 'Men'

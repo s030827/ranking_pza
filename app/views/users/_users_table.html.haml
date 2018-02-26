@@ -2,11 +2,9 @@
   %thead.thead-dark
     %tr
       %th{scope: 'col'} #
-      %th{scope: 'col'} Name
-      %th{scope: 'col'} Surname
+      %th{scope: 'col'} Full name
   %tbody
     - users.each.with_index(1) do |user, i|
       %tr.clickable{ "data-href" => user_path(user) }
         %th{scope: 'row'}= rows_count + i
-        %td= user.name
-        %td= user.surname
+        %td= user.full_name
