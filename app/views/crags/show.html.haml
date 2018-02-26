@@ -1,1 +1,3 @@
-= render 'lines/lines_table', lines: @lines
+.container
+  %h1= "#{params[:crag]} (#{@lines.size})"
+  = render 'lines/lines_table', lines: @lines
