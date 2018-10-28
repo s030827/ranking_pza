@@ -1,4 +1,11 @@
 .container
+  .row
+    .input-group
+    = form_tag users_path, method: :get do
+      = text_field_tag :search, params[:search], class: 'form-control',
+          placeholder: 'Search for users...'
+      .input-group-btn
+        = submit_tag 'Search', name: nil, class: 'btn btn-default'
   %h1= "Users (#{User.all.size})"
   = render 'users_table', users: @users
   = paginate @users
