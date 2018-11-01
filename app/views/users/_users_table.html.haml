@@ -5,6 +5,6 @@
       %th{scope: 'col'} Full name
   %tbody
     - users.each.with_index(1) do |user, i|
-      %tr.clickable{ "data-href" => user_path(user) }
+      %tr.clickable{ "data-href" => user_path(user.id) }
         %th{scope: 'row'}= rows_count + i
-        %td= user.full_name
+        %td= "#{user.name} #{user.surname}"

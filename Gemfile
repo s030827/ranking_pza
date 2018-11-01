@@ -34,6 +34,8 @@ gem 'simple_form'
 gem 'kaminari'
 gem 'devise'
 gem 'geokit-rails'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
