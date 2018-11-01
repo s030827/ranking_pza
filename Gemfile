@@ -36,6 +36,7 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'simple_form'
 gem 'kaminari'
 gem 'devise'
+gem 'geokit-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
