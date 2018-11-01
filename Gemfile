@@ -10,9 +10,6 @@ end
 gem 'rails', '~> 5.1.4'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
-# for thinking sphinx
-gem 'mysql2'
-gem 'thinking-sphinx'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
