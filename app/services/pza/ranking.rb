@@ -7,19 +7,31 @@ module PZA
     end
 
     def call
-      @users.includes(:ascents).map do |user|
-        pts = points(user)
-        next if pts == 0
-        {
-          full_name: user.full_name,
-          points: points(user),
-          id: user.id
-        }
-      end.compact.sort_by { |hsh| hsh[:points] }.reverse!
+      @users.map do |user|
+        format_user(user)
+      end.sort_by { |h| h[:points] }.reverse!
     end
 
-    def points(user)
-      PZA::CalculateYearPoints.new(user, @year, @kind).call
+    private
+
+    attr_reader :users, :year, :kind
+
+    def format_user(user)
+      {
+        id: user.id,
+        full_name: "#{user.name} #{user.surname}",
+        points: calculate_points(user)
+      }
+    end
+
+    def calculate_points(user)
+      Ascent.includes(:user)
+        .where(user: user)
+        .by_year(year)
+        .where(kind: kind)
+        .order(points: :desc)
+        .limit(10)
+        .sum(&:points)
     end
   end
 end
