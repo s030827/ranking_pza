@@ -1,37 +1,49 @@
 <div class='row'>
   <div class='col-sm-2'></div>
   <div class='col-sm-10 text-center'>
-    <h2>Results <%= "(#{@users.count})" if @users %></h2>
+    <h2>Results <%= "(#{@users.count})" unless @users.empty? %></h2>
   </div>
 </div>
 <div class='row'>
   <div class="col-sm-2">
-    <%= simple_form_for :search, { url: search_path } do |f| %>
+    <!-- add js script to remove empty parameters from url -->
+    <%= simple_form_for :search, url: search_path, method: :get do |f| %>
       <%= f.input :city_zip, label: 'City / Zip', required: false %>
       <%= f.input :distance, collection: ['10', '30', '50', '100'],
                   label: "Distance (in km)", required: false %>
+      <!-- add js validation to include all ascent's fields -->
+      <%= f.collection_radio_buttons :kind,
+        [['s', 'Lead'] ,['b', 'Bouldering']], :first, :last %>
       <%= f.input :grade, required: false %>
-      <div class='form-group'>
-        <%= f.collection_radio_buttons :style,
-          [['os', 'OS'] ,['rp', 'RP']], :first, :last %>
-      </div>
+      <%= f.collection_radio_buttons :style,
+        [['os', 'OS'] ,['rp', 'RP']], :first, :last %>
+      <!---------------------------------------------------- -->
       <%= f.collection_radio_buttons :sex,
-        [['male', 'Male'] ,['female', 'Female']], :first, :last %>
+        [['M', 'Male'] ,['F', 'Female']], :first, :last %>
       <%= f.button :submit, "Search", class: "btn btn-primary" %>
     <% end %>
   </div>
   <div class="col-sm-10 text-center"><br />
-    <% if @users %>
+    <% unless @users.empty? %>
       <table class='table table-condensed table-hover'>
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <%= content_tag(:th, "Distance", scope: 'col') if @show_distance %>
+          </tr>
+        </thead>
         <tbody>
           <% @users.each.with_index(1) do |user, i| %>
             <tr class='clickable' data-href="<%= user_path(user.id) %>">
               <td><%= "#{user.name} #{user.surname}" %></td>
+              <% if @show_distance %>
+                <% distance = user[:fields][:distance].first.round(2) %>
+                <%= content_tag(:td, "#{distance} km") %>
+              <% end %>
             </tr>
           <% end %>
         </tbody>
       </table>
-      <%= paginate @users %>
     <% end %>
   </div>
 </div>

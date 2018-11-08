@@ -25,15 +25,12 @@ class User < ApplicationRecord
 
   def as_indexed_json(options = {})
     as_json(
-        only: [
-          :id, :name, :surname, :sex, :email, :city, :zip,
-        ],
-        include: {
-          ascents: {
-            only: [:kind, :style],
-            include: { line: { only: :grade } }
-          }
+      include: {
+        ascents: {
+          only: [:kind, :style],
+          include: { line: { only: :grade } }
         }
+      }
     ).merge(location: { lat: self.lat, lon: self.lng })
   end
 end

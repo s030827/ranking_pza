@@ -1,16 +1,15 @@
 class SearchController < ApplicationController
 
-  def create
-    find_users
-    redirect_to search_path
+  def show
+    #binding.pry
+    @users = User.search(search_params)
+    @show_distance = @users.first[:fields] unless @users.empty?
   end
-
-  def show; end
 
   private
 
-  def find_users
-    params = Elasticsearch::PartnerQueryBuilder.new(params).call
-    @users = User.search(params)
+  def search_params
+    return unless params[:search]
+    Elasticsearch::PartnerQueryBuilder.new(params).call
   end
 end
