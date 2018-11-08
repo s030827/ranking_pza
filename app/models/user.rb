@@ -13,6 +13,7 @@ class User < ApplicationRecord
   scope :women, -> { where(sex: 'F') }
 
   mapping do
+    indexes :location, type: 'geo_point'
     indexes :ascents, type: 'nested' do
       indexes :kind
       indexes :style
@@ -23,60 +24,16 @@ class User < ApplicationRecord
   end
 
   def as_indexed_json(options = {})
-    self.as_json(
-      options.merge(
-        only: [:id, :name, :surname, :sex, :email, :city, :zip],
+    as_json(
+        only: [
+          :id, :name, :surname, :sex, :email, :city, :zip,
+        ],
         include: {
           ascents: {
             only: [:kind, :style],
             include: { line: { only: :grade } }
           }
         }
-      )
-    )
-  end
-
-  def partner_search(query)
-    self.search({
-      query: {
-        bool: {
-          must: [
-          {
-            multi_match: {
-              query: query,
-              fields: [:author, :title, :body, :tags]
-            }
-          },
-          {
-            match: {
-              published: true
-            }
-          }]
-        }
-      }
-    })
-  end
-
-  def full_name
-    "#{name} #{surname}"
-  end
-
-  def users_who_made_8b_os
-    # {
-    #   "query": {
-    #       "nested" : {
-    #           "path" : "ascents",
-    #           "query" : {
-    #               "bool" : {
-    #                   "must" : [
-    #                   { "match" : {"ascents.kind": "s"} },
-    #                   { "match" : {"ascents.style": "os"} },
-    #                   { "match" : {"ascents.line.grade": "8b"} }
-    #                   ]
-    #               }
-    #           }
-    #       }
-    #   }
-    # }
+    ).merge(location: { lat: self.lat, lon: self.lng })
   end
 end
