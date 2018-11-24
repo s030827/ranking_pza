@@ -1,0 +1,12 @@
+= Project setup
+
+* Clone repository
+    git clone https://github.com/kondorkiewicz/ranking_pza.git
+    cd ranking_pza
+* Create database
+    rake db:create
+* Ask me for the database dump
+* Restore dump
+    psql ranking_development < ranking_dump.sql
+* Install elasticsearch
+    https://www.elastic.co/guide/en/elasticsearch/reference/current/_installation.html
