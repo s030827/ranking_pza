@@ -1,0 +1,16 @@
+<!-- add js script to remove empty parameters from url -->
+<%= simple_form_for :search, url: search_path, method: :get do |f| %>
+  <%= f.input :city_zip, label: 'City / Zip', required: false %>
+  <%= f.input :distance, collection: ['10', '30', '50', '100'],
+              label: "Distance (in km)", required: false %>
+  <!-- add js validation to include all ascent's fields -->
+  <%= f.collection_radio_buttons :kind,
+    [['s', 'Lead'] ,['b', 'Bouldering']], :first, :last %>
+  <%= f.input :grade, required: false %>
+  <%= f.collection_radio_buttons :style,
+    [['os', 'OS'] ,['rp', 'RP']], :first, :last %>
+  <!---------------------------------------------------- -->
+  <%= f.collection_radio_buttons :sex,
+    [['M', 'Male'] ,['F', 'Female']], :first, :last %>
+  <%= f.button :submit, "Search", class: "btn btn-primary" %>
+<% end %>

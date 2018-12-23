@@ -18,6 +18,7 @@ class User < ApplicationRecord
       indexes :kind
       indexes :style
       indexes :line do
+        indexes :name
         indexes :grade
       end
     end
@@ -28,7 +29,7 @@ class User < ApplicationRecord
       include: {
         ascents: {
           only: [:kind, :style],
-          include: { line: { only: :grade } }
+          include: { line: { only: [:grade, :name] } }
         }
       }
     ).merge(location: { lat: self.lat, lon: self.lng })

@@ -1,0 +1,27 @@
+<table class='table table-condensed table-hover'>
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <%= content_tag(:th, "Distance", scope: 'col') if @show_distance %>
+      <%= content_tag(:th, "Inner Hits", scope: 'col') if @users.first[:inner_hits] %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each.with_index(1) do |user, i| %>
+      <% klass = @users.first[:inner_hits] ? '' : 'clickable' %>
+      <tr class='<%= "#{klass}" %>' data-href="<%= user_path(user.id) %>">
+        <td><%= "#{user.name} #{user.surname}" %></td>
+        <% if @show_distance %>
+          <% distance = user[:fields][:distance].first.round(2) %>
+          <%= content_tag(:td, "#{distance} km") %>
+        <% end %>
+        <% if @users.first[:inner_hits] %>
+          <td>
+            <%= "#{user.inner_hits.ascents.hits.total}" %>
+            <%= link_to 'view', '#' %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

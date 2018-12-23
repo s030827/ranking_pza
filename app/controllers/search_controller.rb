@@ -1,7 +1,6 @@
 class SearchController < ApplicationController
 
   def show
-    #binding.pry
     @users = User.search(search_params)
     @show_distance = @users.first[:fields] unless @users.empty?
   end

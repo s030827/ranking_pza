@@ -8,7 +8,7 @@ module Elasticsearch
       @query = { 'bool': { 'must': [] } }
       @sort = []
       @answer = {
-        'query': query, 'size': 1000, 'stored_fields': ['_source']
+        'query': query, 'size': 1000, 'stored_fields': ['_source'], '_source': ['name', 'surname']
       }
     end
 
@@ -83,7 +83,8 @@ module Elasticsearch
                 { match: { 'ascents.line.grade': params[:grade] } }
               ]
             }
-          }
+          },
+          inner_hits: { size: 100 }
         }
       })
     end
