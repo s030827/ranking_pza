@@ -6,4 +6,8 @@ Rails.application.routes.draw do
   resources :lines, only: [:index, :show]
   resource :crags, only: [:index, :show]
   resources :ascents, only: :index
+
+  namespace :api do
+    resource :places_autocomplete, only: :show, controller: "places_autocomplete"
+  end
 end
